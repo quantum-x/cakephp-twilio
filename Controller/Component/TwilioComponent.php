@@ -31,27 +31,14 @@ class TwilioComponent extends Component {
  * @property string $from    - from sms phone number
  * @property string $to      - to sms phone number
  * @property string $message - sms message
- * @return integer           - sms id 
+ * @property string $service_id - co-pilot service id
+ * @return integer           - sms id
  * 
  */
-    public function sendSMS($from, $to, $message) {
-        return $this->_twilioClient->sendSMS($from, $to, $message);
+    public function sendSMS($from, $to, $message, $service_id=false) {
+        return $this->_twilioClient->sendSMS($from, $to, $message, $service_id);
     }
-
-/**
- * Call method
- * @param  string $from  - call from phone number
- * @param  string $to    - call to phone number
- * @param  string $twiml - TwiML url
- * @return integer       - call id
- */
-    public function call($from, $to, $twiml) {
-        return $this->_twilioClient->call($from, $to, $message);
-    }
-
-    public function createTwiML($msg, $musicUrl=null, $musicOptions=array()) {
-        return $this->_twilioClient->generateTwiML($msg, $musicUrl, $musicOptions);
-    }
+    
 
 
 }
