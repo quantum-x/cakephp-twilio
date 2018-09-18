@@ -64,16 +64,22 @@ class Twilio {
  * 
  * @param  string $from - sms from phone number
  * @param  string $to   - sms ro phone number
- * @param  string $text - sms message text 
+ * @param  string $text - sms message text
+ * @param  string $service - service ID if we're using the Co-pilot service
  * @return int
  * 
  */
-    public function sendSMS($from, $to, $text) {
-        $messageId = $this->__instance->account->messages->create(array(
-                'From' => $from,
-                'To' => $to,
-                'Body' => $text
-            ));
+    public function sendSMS($from, $to, $text, $service = false) {
+        $config_array = array(
+            'From' => $from,
+            'To' => $to,
+            'Body' => $text
+        );
+
+        if (isset($service) && $service !== false) {
+            $config_array['messagingServiceSid'] = $service;
+        }
+        $messageId = $this->__instance->account->messages->create($config_array);
         return $messageId;
     }
 
