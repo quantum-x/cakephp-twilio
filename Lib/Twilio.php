@@ -77,7 +77,8 @@ class Twilio {
         );
 
         if (isset($service) && $service !== false) {
-            $config_array['messagingServiceSid'] = $service;
+            $config_array['MessagingServiceSid'] = $service;
+            unset($config_array['From']);
         }
         $messageId = $this->__instance->account->messages->create($config_array);
         return $messageId;
